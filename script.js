@@ -44,4 +44,19 @@ function editarPersona(id, nombreActual, correoActual) {
     if (!nuevoNombre || !nuevoCorreo) return;
 
     fetch(`${API}/editar/${id}`, {
-        method
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ nombre: nuevoNombre, correo: nuevoCorreo })
+    })
+    .then(() => listarPersonas());
+}
+
+function eliminarPersona(id) {
+    if (!confirm("¿Seguro que deseas eliminar esta persona?")) return;
+
+    fetch(`${API}/eliminar/${id}`, { method: "POST" })
+        .then(() => listarPersonas());
+}
+
+document.addEventListener("DOMContentLoaded", listarPersonas);
+
