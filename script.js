@@ -1,4 +1,4 @@
-const API = "https://mi-api.onrender.com"; // reemplaza con tu URL real de Render
+const API = "https://mi-api.onrender.com"; // reemplaza con tu URL real
 
 function listarPersonas() {
     fetch(`${API}/personas`)
@@ -38,24 +38,5 @@ function crearPersona() {
     });
 }
 
-function editarPersona(id, nombreActual, correoActual) {
-    const nuevoNombre = prompt("Nuevo nombre:", nombreActual);
-    const nuevoCorreo = prompt("Nuevo correo:", correoActual);
-    if (!nuevoNombre || !nuevoCorreo) return;
-
-    fetch(`${API}/editar/${id}`, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ nombre: nuevoNombre, correo: nuevoCorreo })
-    })
-    .then(() => listarPersonas());
-}
-
-function eliminarPersona(id) {
-    if (!confirm("¿Seguro que deseas eliminar esta persona?")) return;
-
-    fetch(`${API}/eliminar/${id}`, { method: "POST" })
-        .then(() => listarPersonas());
-}
-
 document.addEventListener("DOMContentLoaded", listarPersonas);
+
