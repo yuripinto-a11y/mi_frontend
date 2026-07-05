@@ -1,4 +1,4 @@
-const API = "https://mi-api.onrender.com"; // reemplaza con tu URL real
+const API = "https://mi-api-omqc.onrender.com";
 
 function listarPersonas() {
     fetch(`${API}/personas`)
@@ -38,5 +38,10 @@ function crearPersona() {
     });
 }
 
-document.addEventListener("DOMContentLoaded", listarPersonas);
+function editarPersona(id, nombreActual, correoActual) {
+    const nuevoNombre = prompt("Nuevo nombre:", nombreActual);
+    const nuevoCorreo = prompt("Nuevo correo:", correoActual);
+    if (!nuevoNombre || !nuevoCorreo) return;
 
+    fetch(`${API}/editar/${id}`, {
+        method
